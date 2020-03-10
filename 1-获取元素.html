@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 
+    一、获取元素
+  document.getElementById("id名")
+  document.getElementsByTagName("标签名") 伪数组形式存储,没有返回[]
+  document.getElementsByClassName("class名") 伪数组形式存储，没有返回[]
+  document.querySelector("选择器") 返回的是第一个,没有返回null
+  document.querySelectorAll("选择器") 返回的是所有选择器,伪数组形式存储，没有返回[]
+  获取body元素：document.body
+  获取html元素：document.documentElement
+  -->
+  <div id="time">20202</div>
+  <div class="box">1</div>
+  <div class="box">2</div>
+
+  <span>hhh1</span>
+  <span>hhh2</span>
+  <span>hhh3</span>
+  <span>hhh4</span>
+  <ol id="ol">
+    <li>hhhhh</li>
+    <li>hhhhh</li>
+    <li>hhhhh</li>
+    <li>hhhhh</li>
+    <li>hhhhh</li>
+  </ol>
+  <script>
+    let time = document.getElementById("time")
+    let a = document.getElementsByClassName("box")
+    let b = document.getElementsByTagName("span")
+    console.log(time);
+    console.dir(time) //返回元素对象，查看里面的属性和方法
+    console.log(a);
+    console.log(b);
+    for (let i = 0; i < a.length; i++) {
+      console.log(a[i]);
+    }
+    // 获取父元素里面的子元素
+    let ol1 = document.getElementsByTagName('ol')
+    let li1 = ol1[0].getElementsByTagName('li')
+    console.log(li1);
+    let ol = document.getElementById("ol")
+    let li = ol.getElementsByTagName("li")
+    console.log(li);
+    let  s=document.querySelector("span")
+    let s1=document.querySelector(".box")
+    console.log(s);
+    console.log(s1);
+    let s2=document.querySelectorAll("span")
+    let s3=document.querySelector("a")
+    let s4=document.querySelectorAll("a")
+    console.log(s2);
+    console.log(s3);
+    console.log(s4);
+    console.log(document.body);
+    console.log(document.documentElement);
+    
+    
+  </script>
+</body>
+
+</html>

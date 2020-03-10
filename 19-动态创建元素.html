@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <button>点击</button>
+  <p>11111111</p>
+  <div class="inner"></div>
+  <div class="create"></div>
+  <script>
+    /*三种动态创建元素的区别
+    1、document.write("标签及内容")  当文档流执行完毕，才执行它 它会导致页面重绘
+    2、element.innerHTML() 利用for创建多个效率高（不要拼接字符串,采用数组格式）
+    3、document.createElement("标签名") 用for创建多个效率稍低
+    */
+    let btn = document.querySelector("button")
+    btn.onclick = function () {
+      document.write("<p>44444444444页面重绘了</p>")
+    }
+    document.write("<div>12334</div>")
+
+    // 2、element.innerHTML()
+    let inner = document.querySelector(".inner")
+    // for (let i = 0; i < 10; i++) {
+    //   inner.innerHTML += "<a>百度</a>"
+    // }
+    let arr = []
+    for (let i = 0; i < 10; i++) {
+      arr.push("<a>百度</a>")
+    }
+    inner.innerHTML = arr.jion('')
+    // 3、document.createElement()
+    let create = document.querySelector(".create")
+    for (let i = 0; i < 10; i++) {
+      let a = document.createElement("a")
+
+      create.appendChild(a)
+    }
+
+
+  </script>
+
+</body>
+
+</html>

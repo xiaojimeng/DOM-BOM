@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo" index="1" class="nav"></div>
+    <p data-time="20" data-lis-name="k">20</p>
+    <script>
+        /*自定义属性
+        1、获取元素属性
+            element.属性   只能获取内置属性
+            element.getAttribute("属性") 可以获取内置和自定义的属性
+        2、设置元素的属性值
+            element.属性="值"
+            element.setAttribute("属性","值") 当值是数字时可以直接写
+        3、移除属性
+             element.removeAttribute("属性")
+        4、设置自定义属性：data-自定义属性=""  
+            下面的自定义属性必须是 data-属性  格式的
+            element.dataset.自定义属性 (i-11才支持)
+            element.dataset["自定义属性"]  (i-11才支持)
+            获取时属性采用驼峰命名法
+        */
+        let div = document.querySelector('div');
+        console.log(div.id);
+        console.log(div.getAttribute("index"));
+        div.id = 5
+        div.setAttribute("index", "5")
+        div.setAttribute("class", "footer")
+        div.removeAttribute("index")
+
+        // 设置自定义属性：data-自定义属性=""
+        let p = document.querySelector('p');
+        console.log(p.getAttribute("data-time"));
+        console.log(p.dataset.time);
+        console.log(p.dataset["time"]);
+        // 有多个链接单词，采用驼峰命名法
+        console.log(p.dataset.lisName);
+        console.log(p.dataset["lisName"]);
+
+    </script>
+</body>
+
+</html>

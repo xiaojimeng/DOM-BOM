@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .box {
+      height: 20px;
+      width: 90px;
+      background-color: rgb(160, 102, 102);
+      padding: 5px;
+      border: 7px solid rebeccapurple;
+      overflow: auto;
+    }
+
+
+  </style>
+</head>
+
+<body>
+  <div class="box">xxffffff哒哒哒哒哒哒多多多多多多多多多多多多多多多多多多多多多哒哒哒哒哒哒多多多多多多多多多多多多多多多多多多多多多多xxxxxxx</div>
+ 
+
+  <script>
+    /* 3、scroll 
+    scroll.Top    元素被卷去的上侧距离
+    scroll.Left   元素被卷去的左侧距离
+    scroll.Width  width+padding (里面内容超出也算入)
+    scroll.Height height+padding(里面内容超出也算入)
+    scroll 滚动事件
+    */
+    let box = document.querySelector(".box")
+
+    console.log(box.scrollWidth);
+    console.log(box.scrollHeight);
+    box.addEventListener("scroll", function () {
+      console.log(box.scrollTop);
+      console.log(box.scrollLeft);
+
+    })
+
+  </script>
+</body>
+
+</html>

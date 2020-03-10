@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div,
+    li {
+      width: 100px;
+      height: 100px;
+      background-color: pink;
+    }
+
+    .father {
+      height: 500px;
+      width: 500px;
+      background-color: rgb(49, 235, 142);
+
+    }
+  </style>
+</head>
+
+<body>
+  <button class="b1">传统</button>
+  <button class="b2">方法监听</button>
+  <button class="b3">attachEvent</button>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <ul class="father">
+    <li class="son">儿子</li>
+  </ul>
+  <ol>
+    <li>hhhh1</li>
+    <li>hhhh2</li>
+    <li>hhhh3</li>
+    <li>hhhh4</li>
+    <li>hhhh5</li>
+  </ol>
+  <div class="s1">事件对象</div>
+  <a href="http://www.baidu.com">百度</a>
+  <form action="http://www.baidu.com">
+    <input type="submit" value="提交" name="sub">
+  </form>
+  <ul class="wp">
+    <li>哈哈哈哈哈哈哈1</li>
+    <li>哈哈哈哈哈哈哈2</li>
+    <li>哈哈哈哈哈哈哈3</li>
+    <li>哈哈哈哈哈哈哈4</li>
+    <li>哈哈哈哈哈哈哈5</li>
+  </ul>
+  我不能被选中被复制
+
+
+  <script>
+    /*JavaScript事件
+    1、注册事件
+        传统：element.onclick=function() {} 只能添加一个事件
+        方法监听：elemenet.addEventListener("事件",function() { }) 可以添加多个事件（事件处理程序）
+        事件监听方式（很很很少用） element.attachEvent("onclick",function() {}) ie9以前的版本
+    2、删除事件
+        传统 : element.onclick=null
+        element.removeEventListener('事件',绑定事件里面的回调函数)
+        element.detachEvenet("onclick",绑定事件里面的回调函数)
+    3、DOM事件流
+        捕获阶段过程：document ->html ->body ->targetElement
+        冒泡阶段过程：targetElement ->body ->html ->document
+        注意：传统和attachEvent只能得到冒泡阶段
+        捕获阶段: elemenet.addEventListener("事件",function() { },true)
+        冒泡阶段:elemenet.addEventListener("事件",function() { },false)
+        !!!!! onblur,onfocus.onmouseenter,onmouseleave 这些事件是没有冒泡的
+    4、事件对象
+       1、 elemenet.addEventListener("事件", function (e) {console.log(e); e就是事件对象}
+          (ie678 window.event 来获取事件对象 )
+       2、事件对象常见方法和属性：
+            e.target 触发事件对象 （  e.srcElement ie678用）
+            e.type 事件类型
+            e.preventDefault()阻止默认行为  （ e.returnValue ie678用）  （ 传统注册还能用 return false 阻止默认行为)
+            e.stopPropagation() 阻止冒泡 （e.cancelBubble=true ie678用）
+    5、阻止事件冒泡
+        e.stopPropagation() 阻止冒泡 （e.cancelBubble=true ie678用）
+    6、事件委托(事件代理)
+     作用：只操作了一次DOM ,提高程序的性能
+    7、常用鼠标事件
+      contextmenu 禁止鼠标右键菜单
+      selectstart 禁止鼠标选中
+    8、常用键盘事件
+      keyup,keydown,keypress //keypress不能识别功能键 如ctrl,shift
+    9、鼠标事件对象
+      e.clientX 鼠标相当于可视窗口的x坐标
+      e.pageX 鼠标相当于文档页面的x坐标
+      e.screenX 鼠标相当于电脑屏幕的x坐标
+    10、键盘事件对象  
+        e.keyCode 键盘对应ASCII吗 (keyup事件中；大小写字母一样，keypress区分大小写)
+        获取焦点element.focus()
+    */
+    let b1 = document.querySelector(".b1")
+    let b2 = document.querySelector(".b2")
+    let b3 = document.querySelector(".b3")
+    let divs = document.querySelectorAll("div")
+    let s1 = document.querySelector(".s1")
+    let ol = document.querySelector("ol")
+    let a = document.querySelector("a")
+    // 1、注册事件
+    b1.onclick = function () {
+      alert("传统")
+    }
+    b1.onclick = function (e) {
+      alert("传统222")
+      e = e || window.event
+      console.log(e);
+    }
+    b2.addEventListener("click", function () {
+      alert("方法监听")
+    })
+    b2.addEventListener("click", function () {
+      alert("方法监听22")
+    })
+    // b3.attachEvent("onclick", function () {
+    //   console.log(22222222);
+    // })
+    // 2、删除事件
+    b1.onclick = null
+    divs[1].addEventListener("click", fn)
+    function fn() {
+      alert("解绑事件")
+      divs[1].removeEventListener('click', fn)
+    }
+    //divs[2].attachEvent("onclick",fn2)
+    //     function fn2() {
+    //   alert("dttach解绑事件")
+    // divs[2].detachEvenet('click', fn2)
+    // }
+    // 3、DOM事件流
+    let father = document.querySelector(".father")
+    let son = document.querySelector(".son")
+    // 捕获阶段
+    father.addEventListener("click", function () {
+      alert("father")
+    }, true)
+    son.addEventListener("click", function () {
+      alert("son")
+
+    }, true)
+    // 冒泡阶段
+    father.addEventListener("click", function () {
+      alert("father")
+    }, false)
+    son.addEventListener("click", function (e) {
+      alert("son")
+      // 5、阻止事件冒泡
+      e.stopPropagation()
+    }, false)
+    // 4、事件对象
+    s1.addEventListener("click", function (e) {
+      console.log(e); //e就是事件对象，是一个形参
+    })
+    ol.addEventListener("click", function (e) {
+      console.log(this);//this 谁绑定事件了这个事件就是谁
+      console.log(e.currentTarget);
+      console.log(e.target)//e.target 谁触发了这个事件就是谁
+      console.log(e.type)
+      // console.log(e.cancelBubble)
+      // console.log(e.stopPropagation())
+    })
+    //阻止默认行为 
+    a.onclick = function (e) {
+      e.preventDefault()  //标准
+      // e.returnValue //（低版本）
+      // return false //只有传统注册事件才能阻止
+    }
+    // 6、事件委托
+    let wp = document.querySelector(".wp")
+    wp.addEventListener("click", function (e) {
+      e.target.style.backgroundColor = "yellow"
+    })
+    // 7、常用鼠标事件
+    document.addEventListener("contextmenu", function (e) {
+      e.preventDefault()
+    })
+    document.addEventListener("selectstart", function (e) {
+      e.preventDefault()
+    })
+    // 8、常用键盘事件
+    document.addEventListener("keyup", function (e) {
+      console.log("keyup");
+      console.log(e);
+      console.log(e.keyCode);
+    })
+    document.addEventListener("keydown", function () {
+      console.log("keydown");
+
+    })
+    document.addEventListener("keypress", function () {
+      console.log("keypress");//不能识别功能键 如ctrl,shift
+
+    })
+
+    // 9、鼠标事件对象
+    document.addEventListener("click", function (e) {
+      // client 可视区域
+      console.log(e.clientX);
+      console.log(e.clientY);
+      // page  页面文档
+      console.log(e.pageX);
+      console.log(e.pageY);
+      // screen  电脑屏幕
+      console.log(e.screenX);
+      console.log(e.screenY);
+
+    })
+
+  </script>
+</body>
+
+</html>

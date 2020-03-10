@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+      position: absolute;
+      left: 0;
+      width: 100px;
+      height: 100px;
+      background-color: pink;
+    }
+  </style>
+</head>
+
+<body>
+  <div></div>
+  <script>
+    /*移动端拖拽
+    移动端拖拽原理： 手指移动的位置+盒子原来的位置=盒子现在的位置
+    手指移动的距离=手指滑动中的位置-手指刚开始触摸的位置
+    注意：手指移动会触发滚到屏幕，所以要阻止默认的屏幕滚动行为 e.preventDefault();
+    */
+    let div = document.querySelector("div")
+    let startX = 0//手指开始的位置
+    let startY = 0
+    let x = 0
+    let y = 0//盒子开始的位置
+
+    div.addEventListener("touchstart", function (e) {
+      // 1、获取手指初始值
+      startX = e.targetTouches[0].pageX
+      startY = e.targetTouches[0].pageY
+      x = this.offsetLeft
+      y = this.offsetTop
+    })
+    div.addEventListener("touchmove", function (e) {
+      // 2、计算手指移动距离: 指移动的距离=手指滑动中的位置-手指刚开始触摸的位置
+      let moveX = e.targetTouches[0].pageX - startX
+      let moveY = e.targetTouches[0].pageY - startY
+      // 3、移动盒子
+      this.style.left = moveX + "px"
+      this.style.top = moveY + "px"
+      e.preventDefault()//阻止默认的屏幕滚动行为
+    })
+  </script>
+</body>
++
+</html>

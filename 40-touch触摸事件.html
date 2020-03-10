@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+      div {
+          width: 100px;
+          height: 100px;
+          background-color: pink;
+      }
+  </style>
+</head>
+
+<body>
+  <div></div>
+  <script>
+  /*移动端动画
+  1、touch触摸事件
+      touchstart 手指触摸到时触发
+      touchmove 手指上滑时触发
+      touchend 手指离开时触发
+  2、触发事件对象
+      e.touches
+      e.targetTouches （常用）
+      如果监听的是一个DOM元素   e.touches和e.targetTouches结果一样
+      e.changedTouches
+      手指离开时：没有 e.touches和e.targetTouches
+      e.targetTouches[0]  当前触摸的DOM 元素的一个手指的相关信息
+  3、移动端拖动元素
+    移动端拖拽原理： 手指移动的位置+盒子原来的位置=盒子现在的位置
+    手指移动的距离=手指滑动中的位置-手指刚开始触摸的位置
+    注意：手指移动会触发滚到屏幕，所以要阻止默认的屏幕滚到 e.preventDefault();
+  */
+ let div = document.querySelector("div")
+ div.addEventListener("touchstart",function(e) {
+   console.log("touchstart");
+   console.log(e);
+   console.log(e.touches);
+   console.log(e.targetTouches);
+   console.log(e.targetTouches[0]);//当前触摸的DOM 元素的一个手指的相关信息
+
+   console.log(e.changedTouches);
+ })
+ div.addEventListener("touchmove",function() {
+   console.log("touchmove");
+ })
+ div.addEventListener("touchend",function(e) {
+   console.log("touchend");
+   console.log(e.changedTouches);
+ })
+  </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /*立即执行函数
+    (function() {})() 或 (function(){}())
+    作用：独立创建了一个作用域
+    */
+    (function (a) {
+      console.log(2);
+      console.log(a);
+    })(11);
+    (function (a, b) {
+      console.log(a + b);
+    }(1, 4));
+    (function fn(a, b) {
+      console.log(a - b);
+    }(1, 4));
+    
+  </script>
+</body>
+
+</html>

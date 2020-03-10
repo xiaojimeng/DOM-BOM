@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .box {
+      position: relative;
+      width: 400px;
+      border-bottom: 1px solid #ccc;
+      margin: 100px auto;
+    }
+
+    .box input {
+      width: 370px;
+      height: 30px;
+      border: 0;
+      outline: none;
+    }
+
+    .box img {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      width: 24px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <label for="">
+      <img src="images/close.png" alt="" id="eye">
+    </label>
+    <input type="password" name="" id="pwd">
+  </div>
+  <button>按钮</button>
+  <input type="text" value="输入内容">
+  <script>
+    /*
+ 修改表单属性：
+      表单属性：type,value,checked,selected,disabled
+      element.value="新的值"
+      this指向的是事件函数的调用者
+    */
+    let btn = document.querySelector("button")
+    let input = document.querySelector("input")
+    btn.onclick = function () {
+      input.value = "被点击了"
+      //  this指向的是事件函数的调用者
+      this.disabled = true // btn.disabled = true
+    }
+    // 案例
+    let eye = document.getElementById("eye")
+    let pwd = document.getElementById("pwd")
+    let flag = 0
+    eye.onclick = function () {
+      if (flag) {
+        pwd.type = "text"
+        eye.src="images/open.png"
+        flag=0
+      } else {
+        pwd.type = "password"
+        eye.src="images/close.png"
+        flag=1
+      }
+    }
+
+  </script>
+</body>
+
+</html>

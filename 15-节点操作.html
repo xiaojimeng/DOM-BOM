@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <span>我是sapn1</span>
+  <div class="s">我是div</div>
+  <span>我是sapn2</span>
+  <button>按钮</button>
+  <ul>
+    <li>我是li1</li>
+    <li>我是li2</li>
+    <li>我是li3</li>
+    <li>我是li4</li>
+    <li>我是li5</li>
+  </ul>
+  <div class="box">
+    <div class="close">X</div>
+  </div>
+  <ol>
+    <li>124</li>
+  </ol>
+  <script>
+    /*节点操作
+    作用：利用节点层级来获取元素............
+    1、节点组成：nodeType,nodeName,nodeValue
+    元素节点：nodeType为1
+    属性节点：nodeType为2
+    文本节点:nodeType为3（包括文字，空格，换行等）
+    2、父级节点: node.parentNode 亲父亲，找不到返回null
+    3、子节点：
+      node.childNodes  所有的子节点包括元素节点文本节点
+      node.children 所有的子元素节点
+      node.firstChild 第一个子节点 不管是元素节点还是文本节点
+      node.lastChild  最后一个子节点 不管是元素节点还是文本节点
+      node.firstElementChild 第一个子元素节点 ie9
+      node.lastElementChild 最后一个子元素节点 ie9
+      实际常用：node.children[i] 第i-1个子元素节点
+      node.children[node.children.length-1] 最后一个子元素节点
+    4、兄弟节点 （找不到返回null）
+      node.nextSibling 下一个兄弟节点
+      node.previousSibling 前一个兄弟节点
+      node.nextElementSibling 下一个兄弟元素节点
+      node.previousElementSibling 前一个兄弟元素节点
+    5、创建节点：document.createElement("标签名")
+    6、添加节点
+      node.appendChild(添加的节点) 添加在node最后
+      node.insertBefore(添加的节点,指定元素) 添加在node中指定元素前面
+    7、删除节点
+      node.removeChild(要移除的节点)
+    8、阻止链接跳转:href='javascript:;' 或 href='javascript:void(0)'
+    9、复制节点:
+     node.cloneNode() 或 node.cloneNode(false) 克隆节点本身，不克隆里面的节点
+     node.cloneNode(true)复制全部
+    */
+    // 父节点
+    let close = document.querySelector(".close")
+    console.log(close.parentNode);
+    // 子节点
+    let ul = document.querySelector("ul")
+    console.log(ul.childNodes);
+    console.log(ul.children);
+    console.log(ul.firstChild);
+    console.log(ul.lastChild);
+    console.log(ul.firstElementChild);
+    console.log(ul.lastElementChild);
+    console.log(ul.children[3]);
+    // 最后一个
+    console.log(ul.children[ul.children.length - 1]);
+    let div = document.querySelector(".s")
+    // 兄弟节点
+    console.log(div.nextSibling);
+    console.log(div.previousSibling);
+    console.log(div.nextElementSibling);
+    console.log(div.previousElementSibling);
+    // 创建、添加节点
+    let li = document.createElement("li")
+    let li2 = document.createElement("li")
+    let ol = document.querySelector("ol")
+    ol.appendChild(li)
+    ol.insertBefore(li2, ol.children[0])
+    // 删除节点
+    ul.removeChild(ul.children[0])
+    let btn = document.querySelector("button")
+    btn.onclick = function () {
+      if (ul.children.length) {
+        // ul.removeChild(ul.children[ul.children.length-1])
+        ul.removeChild(ul.children[0])
+      } else {
+        this.disabled = true
+      }
+    }
+    // 复制节点
+   let ls= ul.children[0].cloneNode(true)
+    ul.appendChild(ls)
+  </script>
+</body>
+
+</html>

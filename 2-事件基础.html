@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="btn" class="a">唐伯虎</button>
+  <div>123</div>
+  <script>
+    /*
+    1、事件三要素：
+      事件源，事件类型，事件处理程序
+    2、常见鼠标事件
+      onclick
+      onmouseover
+      onmouseout
+      onmousemove
+      onmouseup
+      onmousedown
+      onfoucs 获取鼠标焦点
+      onblur 失去鼠标焦点
+*/
+    let btn = document.getElementById("btn")
+    // let btn=document.querySelector("button")
+    btn.onclick = function () {
+      console.log(1111);
+      alert("hhhhh")
+    }
+    let div = document.querySelector("div")
+    div.onclick = function () {
+      console.log("我被点击了");
+
+    }
+  </script>
+</body>
+
+</html>

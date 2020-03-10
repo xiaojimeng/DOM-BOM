@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./animateY.js"></script>
+    <style>
+        .slider-bar {
+            position: absolute;
+            left: 50%;
+            top: 300px;
+            margin-left: 600px;
+            width: 45px;
+            height: 130px;
+            background-color: pink;
+        }
+
+        .w {
+            width: 1200px;
+            margin: 10px auto;
+        }
+
+        .header {
+            height: 150px;
+            background-color: purple;
+        }
+
+        .banner {
+            height: 250px;
+            background-color: skyblue;
+        }
+
+        .main {
+            height: 1000px;
+            background-color: yellowgreen;
+        }
+
+        span {
+            display: none;
+            position: absolute;
+            bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slider-bar">
+        <span class="goBack">返回顶部</span>
+    </div>
+    <div class="header w">头部区域</div>
+    <div class="banner w">banner区域</div>
+    <div class="main w">主体部分</div>
+    <script>
+        let slider = document.querySelector(".slider-bar")
+        let banner = document.querySelector(".banner")
+        let goBack = document.querySelector(".goBack")
+        let main = document.querySelector(".main")
+
+        let bannerTop = banner.offsetTop
+        let sliderTop = slider.offsetTop - bannerTop
+        let mainTop = main.offsetTop
+        document.addEventListener("scroll", function () {
+            // 原来侧边栏绝对定位， 页面滚到到一定位置 成固定定位，
+            let scrollY = window.pageYOffset
+            if (scrollY >= bannerTop) {
+                slider.style.position = "fixed"
+                slider.style.top = sliderTop + "px"
+            } else {
+                slider.style.position = "absolute"
+                slider.style.top = "300px"
+            }
+            // 页面继续滚到main，返回顶部显示
+            if (scrollY >= mainTop) {
+                goBack.style.display = "block"
+            } else {
+                goBack.style.display = "none"
+            }
+        })
+        // 点击返回顶部
+        goBack.addEventListener("click", function () {
+            // window.scroll(0, 0) //无动画效果
+            animate(window, 0)
+        })
+    </script>
+</body>
+
+</html>

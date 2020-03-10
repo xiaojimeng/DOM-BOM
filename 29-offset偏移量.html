@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .father {
+      /* position: relative; */
+      width: 200px;
+      height: 200px;
+      background-color: pink;
+      margin: 150px;
+    }
+
+    .son {
+      width: 100px;
+      height: 100px;
+      background-color: purple;
+      margin-left: 45px;
+    }
+
+    .w {
+      height: 200px;
+      background-color: skyblue;
+      margin: 0 auto 200px;
+      padding: 10px;
+      border: 15px solid red;
+    }
+
+    .box {
+      height: 500px;
+      width: 400px;
+      background-color: rgb(61, 182, 77);
+      margin: 200px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="father">
+    <div class="son"></div>
+  </div>
+  <div class="w"></div>
+  <div class="box"></div>
+  <script>
+    /*
+网页特效
+    1、offset 元素偏移量
+      offsetTop,
+      offsetLeft 元素相当于带有定位父级的偏移量,没有定位或父亲，以body为准
+      offsetWidth,  padding + border + height，
+      offsetHeight  padding + border + widht，
+      offsetParent  返回带有定位的父亲，否则返回的是body
+      ** 获取元素大小用offset，改变元素大小用style style只能读行内样式,改变盒子的位置style.left ,style.top
+      鼠标在页面中的坐标：e.pageX,e.pageY
+      鼠标在box中的坐标=e.pageX-box.offsetLeft
+  2、client 可视区域
+      clientTop     元素上边框的大小
+      clientLeft    元素左边框的大小
+      clientWidth   width + padding
+      clientHeight  height + padding
+  3、scroll 
+      scroll.Top    元素被卷去的上侧距离
+      scroll.Left   元素被卷去的左侧距离
+      scroll.Width  width+padding(里面内容超出也算入)
+      scroll.Height height+padding(里面内容超出也算入)
+  4、页面被卷
+    window.pageYOffset 页面被卷去的头部
+    window.pageXOffset 页面被卷去的左侧  
+    页面被卷去的头部：window.pageYOffset|| document.documentElement.scrollTop||document.body.scrollTop||0
+  
+  
+  
+  
+    */
+    let f = document.querySelector(".father")
+    let s = document.querySelector(".son")
+    let w = document.querySelector(".w")
+    console.log(f.offsetTop);
+    console.log(f.offsetLeft);
+    console.log(s.offsetLeft);
+    console.log(w.offsetWidth);
+    console.log(w.offsetHeight);
+    console.log(s.offsetParent);
+    // 获取鼠标在盒子中的位置-案例  e.pageX-element.offsetLeft
+    let box = document.querySelector(".box")
+    box.addEventListener("click", function (e) {
+      let x = e.pageX - this.offsetLeft
+      let y = e.pageY - this.offsetTop
+      box.innerHTML = "x坐标是 " + x + "y坐标是" + y
+
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+      position: absolute;
+      left: 20;
+      width: 100px;
+      height: 100px;
+      background-color: pink;
+      margin: ;
+
+    }
+
+    span {
+      position: absolute;
+      left: 0;
+      top: 200px;
+      width: 50px;
+      height: 100px;
+      background-color: rgb(39, 177, 34);
+    }
+  </style>
+</head>
+
+<body>
+    <button class="b1">点击到500</button>
+    <button class="b2">点击到800</button>
+  <span>哈哈哈哈哈哈</span>
+
+  <div></div>
+  <script>
+    /*动画
+  
+    
+    */
+    let div = document.querySelector("div")
+    let span = document.querySelector("span")
+    let b1 = document.querySelector(".b1")
+    let b2 = document.querySelector(".b2")
+
+    // let timer = setInterval(function () {
+    //   if (div.offsetLeft >= 400) {
+    //     clearInterval(timer)
+    //   } else {
+    //     div.style.left = div.offsetLeft + 5 + "px"
+    //   }
+    // }, 30)
+    // 2、动画函数简单封装
+    // function animate(obj, target) {
+    //   let timer = setInterval(function () {
+    //     if (obj.offsetLeft >= target) {
+    //       clearInterval(timer)
+    //     } else {
+    //       obj.style.left = obj.offsetLeft + 5 + "px"
+    //     }
+    //   }, 30)
+    // }
+    // animate(div, 300)
+    // animate(span, 200)
+
+    // 3、优化函数（给不同元素指定不同定时器）
+    // function animate(obj, target) {
+    //   obj.timer = setInterval(function () {
+    //     if (obj.offsetLeft >= target) {
+    //       clearInterval(obj.timer)
+    //     } else {
+    //       obj.style.left = obj.offsetLeft + 5 + "px"
+    //     }
+    //   }, 30)
+    // }
+    // animate(div, 300)
+    // animate(span, 200)
+
+    // 4、不断点击按钮，速度越来越快，因为开启了太多定时器，
+    // 解决：让元素只有一个定时器执行(先清除以前的定时器，只保留当前一个定时器)
+    // function animate(obj, target) {
+    //   // 先清除以前的定时器，只保留当前一个定时器
+    //   clearInterval(obj.timer)
+    //   obj.timer = setInterval(function () {
+    //     if (obj.offsetLeft >= target) {
+    //       clearInterval(obj.timer)
+    //     } else {
+    //       obj.style.left = obj.offsetLeft + 5 + "px"
+    //     }
+    //   }, 30)
+    // }
+    // animate(div, 300)
+    // b1.addEventListener("click", function () {
+    //   animate(span, 200)
+    // })
+    // 5、缓动效果 算法：（目标值-现在的位置）/10 作为每次移动的距离步长 
+    //  offsetLeft 获取现在的位置
+    // function animate(obj, target) {
+    //   clearInterval(obj.timer)
+    //   obj.timer = setInterval(function () {
+    //     let step = Math.ceil((target - obj.offsetLeft) / 10)//向上取整
+    //     if (obj.offsetLeft == target) {
+    //       clearInterval(obj.timer)
+    //     } else {
+    //       obj.style.left = obj.offsetLeft + step + "px"//缓速动画
+    //     }
+    //   }, 10)
+    // }
+    // animate(div, 300)
+    // b1.addEventListener("click", function () {
+    //   animate(span, 500)
+    // })
+    //6、 点击500-800
+    // function animate(obj, target) {
+    //   clearInterval(obj.timer)
+    //   obj.timer = setInterval(function () {
+    //     // let step = Math.ceil((target - obj.offsetLeft) / 10)//向上取整
+    //     let step = (target - obj.offsetLeft) / 10
+    //     step = step > 0 ? Math.ceil(step) : Math.floor(step)
+    //     if (obj.offsetLeft == target) {
+    //       clearInterval(obj.timer)
+    //     } else {
+    //       // obj.style.left = obj.offsetLeft + 5 + "px"  匀速动画
+    //       obj.style.left = obj.offsetLeft + step + "px"//缓速动画
+    //     }
+    //   }, 10)
+    // }
+    // b2.addEventListener("click", function () {
+    //   animate(span, 800)
+    // })
+    // 7、动画添加回调函数 回调函数写在定时器里面
+    function animate(obj, target,callback) {
+      clearInterval(obj.timer)
+      obj.timer = setInterval(function () {
+        let step = (target - obj.offsetLeft) / 10
+        step = step > 0 ? Math.ceil(step) : Math.floor(step)
+        if (obj.offsetLeft == target) {
+          clearInterval(obj.timer)
+          // 在定时器结束后，如果有回调函数 就调用函数
+          if(callback){
+            callback()
+          }
+        } else {
+          obj.style.left = obj.offsetLeft + step + "px"//缓速动画
+        }
+      }, 10)
+    }
+    b2.addEventListener("click", function () {
+      animate(span, 800,function() {
+        span.style.backgroundColor="pink"
+      })
+    })
+  </script>
+</body>
+
+</html>

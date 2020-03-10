@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /*this指向
+      0、一般:this指向调用它的对象
+      1、全局作用域或者普通函数里面的this 指向window (定时器里面的this指向window)
+      2、方法调用中: 谁调用this、this指向谁
+      4、构造函数中:this指向构造函数的实例
+    
+    */
+    window.onload = function () {
+      console.log(this);
+      function fn() {
+        console.log(this);
+      }
+      fn()
+      setTimeout(function () {
+        console.log(this);
+      }, 1000)
+      // 2、方法调用中 this指向它的调用者
+      let o = {
+        say: function () {
+          console.log(this);
+        },
+        eat() {
+          console.log(11, this);
+        }
+      }
+      o.say()
+      o.eat() //o调用，this指向o
+    }
+    // 构造函数中
+    function Fun() {
+      console.log(this);//:this指向是fun的实例对象
+      }
+    let fun = new Fun()
+  </script>
+  <button>点击</button>
+</body>
+
+</html>

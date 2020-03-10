@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    手机号码： <input type="number"> <button>发送</button>
+    <script>
+        //    点击按钮之后，60秒只内不能再点击。同时显示倒计时
+        let btn = document.querySelector("button")
+        let time = 10
+        // btn.addEventListener("click", function () {
+        //     btn.disabled = true
+        //     setInterval(function () {
+        //         btn.innerHTML = "还剩下" + time + "秒"
+        //         if (time == 0) {
+        //             btn.disabled = false
+        //             btn.innerHTML = "发送"
+        //             time = 10
+        //         } else {
+        //             time--
+        //         }
+        //     }, 1000)
+        // })
+
+        btn.addEventListener("click", function () {
+            btn.disabled = true
+            let timer = setInterval(function () {
+                if (time == 0) {
+                    clearInterval(timer)
+                    btn.disabled = false
+                    btn.innerHTML = "发送"
+                    time = 10
+                } else {
+                    btn.innerHTML = "还剩下" + time + "秒"
+                    time--
+                }
+            }, 1000)
+        })
+    </script>
+</body>
+
+</html>

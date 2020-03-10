@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /*
+     5、JS执行机制
+      常见异步任务：
+      1、普通事件，如click，rezise
+      2、资源加载，如load,error
+      3、定时器，setTimeout,setInterval
+      * 先执行同步任务，把异步任务放入任务队列，所有同步任务执行完毕，，在去依次读取任务队列中的异步任务 
+   
+    */
+    window.onload = function () {
+      console.log(1);
+      setTimeout(function () {
+        console.log(2);
+      }, 0)
+      console.log(3);
+      // 结果132
+      console.log(11);
+      document.onclick = function () {
+        console.log("click");
+      }
+      console.log(22);
+      setTimeout(function () {
+        console.log(33);
+      }, 3000)
+
+
+  
+    }
+  </script>
+</body>
+
+</html>
